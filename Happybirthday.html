@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Anniversary ❤️</title>
+
+<style>
+*{
+    font-family: 'Times New Roman', Times, serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    color:white;
+    text-align:center;
+}
+
+/* Background */
+.bg-img {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: black;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 1.5s ease-in-out;
+}
+
+/* Overlay */
+.bg-img::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    top: 0;
+    left: 0;
+}
+
+/* Click box */
+.box {
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 25px;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid white;
+    border-radius: 20px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+}
+
+/* ✅ UPDATED POPUP */
+.popup {
+    display:none;
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: 420px;
+    max-height: 75vh;
+    background: rgba(0,0,0,0.9);
+    border-radius: 20px;
+    padding: 15px;
+    overflow: hidden;
+}
+
+.popup img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+/* ✅ SCROLLABLE LETTER */
+.letter {
+    font-size: 17px;
+    max-height: 40vh;
+    overflow-y: auto;
+    padding-right: 5px;
+   
+}
+
+/* spacing */
+.letter p {
+    margin-bottom: 8px;
+}
+
+/* Floating hearts */
+.heart {
+    position:absolute;
+    font-size:20px;
+    animation: float 6s linear infinite;
+}
+@keyframes float {
+    0%{transform:translateY(100vh);}
+    100%{transform:translateY(-10vh);}
+}
+
+/* Glitter */
+.glitter {
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:white;
+    border-radius:50%;
+    animation: sparkle 2s infinite;
+}
+@keyframes sparkle {
+    0%,100%{opacity:0;}
+    50%{opacity:1;}
+}
+
+/* Burst hearts */
+.burst {
+    position:absolute;
+    font-size:25px;
+    animation: burstAnim 1s ease-out forwards;
+}
+@keyframes burstAnim {
+    0% { transform: scale(1); opacity:1; }
+    100% { transform: translateY(-100px) scale(2); opacity:0; }
+}
+
+/* Side hearts */
+.side-heart {
+    position: absolute;
+    font-size: 20px;
+    animation: sideFloat 4s linear forwards;
+}
+@keyframes sideFloat {
+    0% { opacity: 1; }
+    100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+/* Side glitter */
+.side-glitter {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    animation: glitterMove 3s linear forwards;
+}
+@keyframes glitterMove {
+    0% { opacity: 1; }
+    100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+/* Start screen */
+#startScreen {
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg-img" id="bg"></div>
+
+<audio id="bgMusic" loop>
+    <source src="romantic.mp3">
+</audio>
+
+<div id="startScreen" onclick="startMusic()">
+  <p style="font-size: 25px;"> 💖 WISHES FROM ANISHBOT......Tap to start surprise 💖 </p> 
+</div>
+
+<div class="box" onclick="openPopup(); burstEffect(); sideEffects();">
+    💌 Click for Surprise Message
+</div>
+
+<div class="popup" id="popup">
+    <img src="https://drive.google.com/file/d/1G_G0K4i2Q6We5-bHkvY1bRfG6k-lDwLG/view?usp=drive_link">
+    <div class="letter">
+    <p>Dear Anuj Bot ❤️,</p><p>
+Happy Birthday Day to the person who makes life brighter, crazier, and so much more fun! 💖
+</p><p>
+Having a friend like you is one of the biggest blessings in my life. Through all the laughter, silly moments, late-night talks, adventures, and even difficult times, you've always been there. 🤗✨
+</p><p>
+You are not just a friend; you are family. No matter how busy life gets or how far apart we are, our Birthday remains strong and special. 💕
+</p><p>
+Thank you for all the memories we've created together and for always being someone I can trust, depend on, and share everything with. 🌸
+</p><p>
+You have supported me during my lows, celebrated my highs, and made ordinary days feel extraordinary. That's what makes you such an amazing friend. ❤️
+</p><p>
+I hope you always stay happy, healthy, successful, and surrounded by people who appreciate you as much as I do. 🌟
+</p><p>
+May our Birthday continue to grow stronger with every passing year, creating countless more memories, laughs, and unforgettable moments together. 💫
+</p><p>
+Thank you for being the wonderful person you are and for making my life better simply by being a part of it. 💖
+</p><p>
+Happy Birthday Day once again! ❤️🤗
+</p><p>
+With lots of love,<br>
+<b>Your Best Friend 💕</b>
+</p>
+</div>
+</div>
+
+<script>
+// Music
+function startMusic(){
+    const music = document.getElementById("bgMusic");
+    music.play();
+    document.getElementById("startScreen").style.display="none";
+}
+
+// Images
+const images = ["logo.jpg","photo04.jpeg","photo05.jpg","photo06.jpg"];
+const bg = document.getElementById("bg");
+const music = document.getElementById("bgMusic");
+
+music.addEventListener("loadedmetadata", function(){
+    let intervalTime = (music.duration / images.length) * 1000;
+    let index = 0;
+    bg.style.backgroundImage = `url(${images[0]})`;
+
+    setInterval(() => {
+        index = (index + 1) % images.length;
+        bg.style.backgroundImage = `url(${images[index]})`;
+    }, intervalTime);
+});
+
+// Popup
+function openPopup(){
+    document.getElementById("popup").style.display="block";
+}
+
+// Burst hearts
+function burstEffect(){
+    for(let i=0; i<25; i++){
+        let b = document.createElement("div");
+        b.className = "burst";
+        b.innerHTML = "❤️";
+        b.style.left = Math.random()*100+"vw";
+        b.style.top = Math.random()*100+"vh";
+        document.body.appendChild(b);
+        setTimeout(()=>b.remove(),1000);
+    }
+}
+
+// Side effects
+function sideEffects(){
+    for(let i=0; i<30; i++){
+
+        let lh = document.createElement("div");
+        lh.className = "side-heart";
+        lh.innerHTML = "❤️";
+        lh.style.left = Math.random()*20 + "vw";
+        lh.style.bottom = "0";
+        document.body.appendChild(lh);
+
+        let rh = document.createElement("div");
+        rh.className = "side-heart";
+        rh.innerHTML = "💖";
+        rh.style.left = (80 + Math.random()*20) + "vw";
+        rh.style.bottom = "0";
+        document.body.appendChild(rh);
+
+        let lg = document.createElement("div");
+        lg.className = "side-glitter";
+        lg.style.left = Math.random()*20 + "vw";
+        lg.style.bottom = "0";
+        document.body.appendChild(lg);
+
+        let rg = document.createElement("div");
+        rg.className = "side-glitter";
+        rg.style.left = (80 + Math.random()*20) + "vw";
+        rg.style.bottom = "0";
+        document.body.appendChild(rg);
+
+        setTimeout(()=>{
+            lh.remove(); rh.remove(); lg.remove(); rg.remove();
+        },4000);
+    }
+}
+
+// Background hearts
+setInterval(()=>{
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+},300);
+
+// Background glitter
+setInterval(()=>{
+    let g=document.createElement("div");
+    g.className="glitter";
+    g.style.left=Math.random()*100+"vw";
+    g.style.top=Math.random()*100+"vh";
+    document.body.appendChild(g);
+    setTimeout(()=>g.remove(),2000);
+},100);
+</script>
+
+</body>
+</html>
